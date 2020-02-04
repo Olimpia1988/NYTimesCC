@@ -7,32 +7,27 @@ class ArticleCell: UITableViewCell {
   @IBOutlet weak var articleImage
   : UIImageView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+  
+  
   public func configureCell(NYTimesArticle: Articles) {
     title.text = NYTimesArticle.title
-    
+   
     if let unwrapImage = NYTimesArticle.images {
-      ImageHelper.shared.getImage(urlStr: (unwrapImage.first!.url), completionHandler: { (result) in
+    let filteredImage = unwrapImage.filter{$0.topImage}
+    
+      ImageHelper.shared.getImage(urlStr: (filteredImage.first!.url), completionHandler: { (result) in
         DispatchQueue.main.async {
-          self.activityIndicator.startAnimating()
+          self.activityIndicator.isHidden = true
           switch result {
           case .failure(let error):
-            print(error)
+            //TODO: Refactor!
+            print(error) //refactor this
             self.activityIndicator.stopAnimating()
           case .success(let image):
-            self.activityIndicator.stopAnimating()
             self.articleImage.image = image
-            
-            
           }
         }
-        
-        
       })
     }
-    
-    
-    
   }
-  
-  
 }

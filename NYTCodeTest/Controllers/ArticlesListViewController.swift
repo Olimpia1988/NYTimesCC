@@ -8,16 +8,33 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
-  
   @IBOutlet weak var articlesTableView: UITableView!
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupDelegation()
-        loadArticles()
-      
-      
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    setupUI()
+    setupDelegation()
+    loadArticles()
+  }
+  
+  private func setupUI() {
+    self.navigationItem.title = "NYTimes"
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let indexPath = articlesTableView.indexPathForSelectedRow,
+      let detailViewController = segue.destination as? SingleArticleViewController else {
+        fatalError("indexPath, detailVC nil")
     }
+    let singleArticle = articles[indexPath.row]
+    guard let cell = articlesTableView.cellForRow(at: indexPath) as? ArticleCell else { return }
+    detailViewController.currentImage = cell.articleImage.image
+   
+    detailViewController.detailedArticle = singleArticle
+    
+  }
+  
   
   private func loadArticles() {
     APIManager.getData { (result) in
@@ -25,7 +42,7 @@ class ArticlesListViewController: UIViewController {
       case .success(let data):
         self.articles = data
       case .failure(let error):
-       print(error)
+        print("Error loading data: \(error)")
       }
     }
     
@@ -38,7 +55,7 @@ class ArticlesListViewController: UIViewController {
     
   }
   
-    
+  
 }
 
 extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -54,7 +71,17 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 300
+  
+      return 350
+    
+  }
+  
+  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    if indexPath.section != 0 {
+          return UITableView.automaticDimension
+       } else {
+         return 350
+       }
   }
 }
 
