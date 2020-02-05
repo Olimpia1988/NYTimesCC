@@ -1,11 +1,9 @@
 import Foundation
 
-
-
 struct Articles: Codable {
   var title: String
   var images: [ArticleImages]?
-  var body: String //this an String and I changed it to an Int
+  var body: String
   
   
   static func getArticles(from jsonData: Data) -> [Articles] {

@@ -7,7 +7,7 @@ struct Utilities {
     articleTitle.font = UIFont(name: "Georgia-Bold", size: 18)
     articleTitle.text = text
     articleTitle.numberOfLines = 0
-    articleTitle.textAlignment = .center
+    articleTitle.textAlignment = .left
   }
   
 

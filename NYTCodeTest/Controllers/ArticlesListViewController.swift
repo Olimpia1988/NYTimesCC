@@ -8,8 +8,10 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
+  //MARK: UIObjects
   @IBOutlet weak var articlesTableView: UITableView!
-  
+
+  //MARK: Life Cycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setupUI()
@@ -17,10 +19,14 @@ class ArticlesListViewController: UIViewController {
     loadArticles()
   }
   
-  private func setupUI() {
-    self.navigationItem.title = "NYTimes"
+  @IBAction func toggleButton(_ sender: Any) {
+    
+    
+  
     
   }
+  
+  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let indexPath = articlesTableView.indexPathForSelectedRow,
@@ -30,12 +36,10 @@ class ArticlesListViewController: UIViewController {
     let singleArticle = articles[indexPath.row]
     guard let cell = articlesTableView.cellForRow(at: indexPath) as? ArticleCell else { return }
     detailViewController.currentImage = cell.articleImage.image
-   
     detailViewController.detailedArticle = singleArticle
-    
   }
   
-  
+  //MARK: Private functions
   private func loadArticles() {
     APIManager.getData { (result) in
       switch result {
@@ -45,8 +49,10 @@ class ArticlesListViewController: UIViewController {
         print("Error loading data: \(error)")
       }
     }
-    
-    
+  }
+  
+  private func setupUI() {
+    self.navigationItem.title = "NYTimes"
   }
   
   private func setupDelegation() {
@@ -54,9 +60,8 @@ class ArticlesListViewController: UIViewController {
     self.articlesTableView.dataSource = self
     
   }
-  
-  
 }
+
 
 extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,17 +76,14 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-  
-      return 350
     
+    
+    return 350
   }
   
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    if indexPath.section != 0 {
-          return UITableView.automaticDimension
-       } else {
-         return 350
-       }
+    return 3 
   }
+  
 }
 
