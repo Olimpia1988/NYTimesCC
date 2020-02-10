@@ -17,7 +17,8 @@ class ArticlesListViewController: UIViewController {
   
   //MARK: UIObjects
   @IBOutlet weak var articlesTableView: UITableView!
-
+  @IBOutlet weak var toggleButton: UIBarButtonItem!
+  
   //MARK: Life Cycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +28,14 @@ class ArticlesListViewController: UIViewController {
   
   
   @IBAction func toggleButton(_ sender: Any) {
-   
+    switch currentLanguage {
+    case .English:
+      self.currentLanguage = currentLanguage.swapLanguages()
+      self.toggleButton.title = "English"
+    case .Martian:
+      self.currentLanguage = currentLanguage.swapLanguages()
+      self.toggleButton.title = "Martian"
+    }
     
   }
   
@@ -55,9 +63,7 @@ class ArticlesListViewController: UIViewController {
   }
   
  
-  func changeUILanguage() {
- 
-  }
+
   
   private func setupDelegation() {
     self.articlesTableView.delegate = self
@@ -74,14 +80,12 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleCell else { return UITableViewCell() }
     let singleArticleData = articles[indexPath.row]
-    cell.configureCell(NYTimesArticle: singleArticleData)
+    cell.configureCell(NYTimesArticle: singleArticleData, language: currentLanguage)
     return cell
   }
   
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    
-
     return 250
     
   }
