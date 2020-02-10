@@ -1,17 +1,17 @@
 import UIKit
 
-
-
 class ArticleCell: UITableViewCell {
   
   @IBOutlet weak var title: UILabel!
   @IBOutlet weak var articleImage: UIImageView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
   
+ 
   public func configureCell(NYTimesArticle: Articles) {
+    let NYTTest = Articles.getTextForLanguage(NYTimesArticle.title, selectedLanguage: .Martian)
+  
+    Utilities.setupTitleFont(title, NYTTest)
     
-    Utilities.setupTitleFont(title, MartianTranslation.translateTitleToMartian(NYTimesArticle, .Martian))
-   
     if let unwrapImage = NYTimesArticle.images {
       let filteredImage = unwrapImage.filter{$0.topImage}
        ImageHelper.shared.getImage(urlStr: (filteredImage.first!.url), completionHandler: { (result) in

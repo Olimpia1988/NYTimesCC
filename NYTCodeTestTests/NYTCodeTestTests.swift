@@ -4,6 +4,7 @@ import XCTest
 class NYTCodeTestTests: XCTestCase {
   class TriviaAppTests: XCTestCase {
   
+    //write test on the article model
     
   
     

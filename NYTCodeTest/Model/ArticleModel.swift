@@ -1,5 +1,10 @@
 import Foundation
 
+public enum MartianWords: String {
+  case UpperCase = "Boinga"
+  case LowerCase = "boinga"
+}
+
 struct Articles: Codable {
   var title: String
   var images: [ArticleImages]?
@@ -16,6 +21,21 @@ struct Articles: Codable {
       
     }
   }
+  
+  static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
+  var separator = text.components(separatedBy: " ")
+     for word in 0..<separator.count {
+       if separator[word].count > 3 {
+         if separator[word].first!.isUppercase {
+           separator[word] = MartianWords.UpperCase.rawValue
+         } else {
+           separator[word] = MartianWords.LowerCase.rawValue
+         }
+       }
+     }
+     return separator.joined(separator: " ")
+   }
+  
 }
 
 struct ArticleImages: Codable {

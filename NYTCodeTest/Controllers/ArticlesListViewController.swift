@@ -8,25 +8,28 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
+ public var currentLanguage = LanguageSelector.English {
+    didSet {
+      self.articlesTableView.reloadData()
+    }
+  }
+  
+  
   //MARK: UIObjects
   @IBOutlet weak var articlesTableView: UITableView!
 
   //MARK: Life Cycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
-    setupUI()
     setupDelegation()
     loadArticles()
   }
   
-  @IBAction func toggleButton(_ sender: Any) {
-    
-    
   
+  @IBAction func toggleButton(_ sender: Any) {
+   
     
   }
-  
-  
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let indexPath = articlesTableView.indexPathForSelectedRow,
@@ -51,14 +54,14 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
-  private func setupUI() {
-    self.navigationItem.title = "NYTimes"
+ 
+  func changeUILanguage() {
+ 
   }
   
   private func setupDelegation() {
     self.articlesTableView.delegate = self
     self.articlesTableView.dataSource = self
-    
   }
 }
 
@@ -75,14 +78,12 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
     return cell
   }
   
+  
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
+
+    return 250
     
-    return 350
-  }
-  
-  func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 3 
   }
   
 }
