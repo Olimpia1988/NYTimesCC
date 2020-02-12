@@ -34,21 +34,36 @@ struct Articles: Codable {
     }
   }
   
-  static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
+  static func getTextForLanguage(_ text: String,
+                                 selectedLanguage: LanguageSelector) -> String {
     switch selectedLanguage {
     case .English: return text
     case .Martian:
-      var separator = text.components(separatedBy: " ")
-      for word in 0..<separator.count {
-        if separator[word].count > 3 {
-          if separator[word].first!.isUppercase {
-            separator[word] = MartianWords.UpperCase.rawValue
-          } else {
-            separator[word] = MartianWords.LowerCase.rawValue
-          }
-        }
+      
+    var wordSeparator = text.components(separatedBy: .whitespaces)
+      
+    var tempArray = [String]()
+    for index in 0..<wordSeparator.count  {
+      
+      var paragraphSeparator = wordSeparator[index].components(separatedBy: "\n")
+        
+        if wordSeparator[index].count > 3 {
+                  if wordSeparator[index].first!.isUppercase {
+                  wordSeparator[index] = MartianWords.UpperCase.rawValue
+                    tempArray.append(wordSeparator[index])
+                } else {
+                  wordSeparator[index] = MartianWords.LowerCase.rawValue
+                    tempArray.append(wordSeparator[index])
+                }
+        
+      } else {
+        tempArray.append(wordSeparator[index])
       }
-      return separator.joined(separator: " ")
+        
+        
+      
+      }
+      return tempArray.joined(separator: " ")
     }
   }
 }

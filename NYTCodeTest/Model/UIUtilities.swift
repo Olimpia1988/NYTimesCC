@@ -1,9 +1,9 @@
 import UIKit
 
-struct Utilities {
+struct UIUtilities {
   
 
-  static func setupTitleFont(_ articleTitle: UILabel, _ text: String) {
+  static func setupTitleText(_ articleTitle: UILabel, _ text: String) {
     articleTitle.font = UIFont(name: "Georgia-Bold", size: 18)
     articleTitle.text = text
     articleTitle.numberOfLines = 0
@@ -11,7 +11,7 @@ struct Utilities {
   }
   
 
-  static func setupBodyTextFont(_ articleBody: UITextView, _ text: String) {
+  static func setupBodyText(_ articleBody: UITextView, _ text: String) {
     articleBody.font = UIFont(name: "Georgia", size: 16)
     articleBody.text = text
     

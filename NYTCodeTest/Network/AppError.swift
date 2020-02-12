@@ -1,8 +1,6 @@
 import Foundation
 
 public enum AppError: Error {
-    case unauthenticated
-    case invalidJSONResponse
     case couldNotParseJSON(rawError: Error)
     case noInternetConnection
     case badURL

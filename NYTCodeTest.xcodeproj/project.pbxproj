@@ -22,7 +22,9 @@
 		1205D49223E9CF7E008A0532 /* ImageGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205D49123E9CF7D008A0532 /* ImageGetter.swift */; };
 		1205D49423E9D0E9008A0532 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205D49323E9D0E9008A0532 /* AppError.swift */; };
 		1205D49623E9E5A3008A0532 /* SingleArticleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205D49523E9E5A3008A0532 /* SingleArticleViewController.swift */; };
-		1205D49823E9E7B0008A0532 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205D49723E9E7B0008A0532 /* Utilities.swift */; };
+		1205D49823E9E7B0008A0532 /* UIUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1205D49723E9E7B0008A0532 /* UIUtilities.swift */; };
+		125E122223F3C3FE00CC8486 /* SingleArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E122123F3C3FE00CC8486 /* SingleArticleCell.swift */; };
+		125E122423F3C41A00CC8486 /* TestSingleArticelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125E122323F3C41A00CC8486 /* TestSingleArticelViewController.swift */; };
 		12EBE3AD23EB3EE10042B76D /* MartialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EBE3AC23EB3EE10042B76D /* MartialModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +58,9 @@
 		1205D49123E9CF7D008A0532 /* ImageGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGetter.swift; sourceTree = "<group>"; };
 		1205D49323E9D0E9008A0532 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		1205D49523E9E5A3008A0532 /* SingleArticleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleArticleViewController.swift; sourceTree = "<group>"; };
-		1205D49723E9E7B0008A0532 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		1205D49723E9E7B0008A0532 /* UIUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtilities.swift; sourceTree = "<group>"; };
+		125E122123F3C3FE00CC8486 /* SingleArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleArticleCell.swift; sourceTree = "<group>"; };
+		125E122323F3C41A00CC8486 /* TestSingleArticelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSingleArticelViewController.swift; sourceTree = "<group>"; };
 		12EBE3AC23EB3EE10042B76D /* MartialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MartialModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,6 +139,7 @@
 			children = (
 				1205D48F23E8D059008A0532 /* ArticlesListViewController.swift */,
 				1205D49523E9E5A3008A0532 /* SingleArticleViewController.swift */,
+				125E122323F3C41A00CC8486 /* TestSingleArticelViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -144,6 +149,7 @@
 			children = (
 				1205D46423E76778008A0532 /* Main.storyboard */,
 				1205D48D23E8D010008A0532 /* ArticleCell.swift */,
+				125E122123F3C3FE00CC8486 /* SingleArticleCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -153,7 +159,7 @@
 			children = (
 				1205D48323E8A913008A0532 /* ArticleModel.swift */,
 				12EBE3AC23EB3EE10042B76D /* MartialModel.swift */,
-				1205D49723E9E7B0008A0532 /* Utilities.swift */,
+				1205D49723E9E7B0008A0532 /* UIUtilities.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,7 +279,9 @@
 			files = (
 				1205D48C23E8B7DF008A0532 /* ArticlesApiManager.swift in Sources */,
 				1205D49623E9E5A3008A0532 /* SingleArticleViewController.swift in Sources */,
-				1205D49823E9E7B0008A0532 /* Utilities.swift in Sources */,
+				1205D49823E9E7B0008A0532 /* UIUtilities.swift in Sources */,
+				125E122423F3C41A00CC8486 /* TestSingleArticelViewController.swift in Sources */,
+				125E122223F3C3FE00CC8486 /* SingleArticleCell.swift in Sources */,
 				1205D49023E8D059008A0532 /* ArticlesListViewController.swift in Sources */,
 				12EBE3AD23EB3EE10042B76D /* MartialModel.swift in Sources */,
 				1205D49423E9D0E9008A0532 /* AppError.swift in Sources */,
