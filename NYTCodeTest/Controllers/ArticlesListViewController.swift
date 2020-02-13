@@ -26,6 +26,7 @@ class ArticlesListViewController: UIViewController {
     super.viewDidLoad()
     setupDelegation()
     loadArticles()
+  
   }
   
   //MARK: - IBActions
@@ -49,7 +50,7 @@ class ArticlesListViewController: UIViewController {
     }
     let singleArticle = articles[indexPath.row]
     guard let cell = articlesTableView.cellForRow(at: indexPath) as? ArticleCell else { return }
-   // detailViewController.selectedImage = cell.articleImage.image
+    detailViewController.currentImage = cell.articleImage.image
     detailViewController.selectedArticle = singleArticle
     detailViewController.currentLanguageTest = currentLanguage
   }

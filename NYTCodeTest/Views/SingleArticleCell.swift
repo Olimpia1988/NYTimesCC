@@ -10,16 +10,17 @@ class SingleArticleCell: UITableViewCell {
   
   
   //MARK: - Internal Properties
-  func configureCell(NYTimesArticle: Articles, currentLanguage: LanguageSelector) {
+  func configureCell(_ NYTimesArticle: Articles, _ currentLanguage: LanguageSelector, _ currentImage: UIImage) {
     switch currentLanguage {
     case .English:
       UIUtilities.setupTitleText(title, NYTimesArticle.title)
       UIUtilities.setupBodyText(textField, NYTimesArticle.body)
-      //setup image
+      UIUtilities.setupImage(currentImage, selectedImageTest)
     case .Martian:
       UIUtilities.setupTitleText(title, Articles.getTextForLanguage(NYTimesArticle.title,
       selectedLanguage: currentLanguage))
       UIUtilities.setupBodyText(textField, Articles.getTextForLanguage(NYTimesArticle.body, selectedLanguage: currentLanguage))
+      UIUtilities.setupImage(currentImage, selectedImageTest)
       
       
       

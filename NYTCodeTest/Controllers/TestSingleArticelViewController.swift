@@ -1,4 +1,3 @@
-
 import UIKit
 
 class TestSingleArticelViewController: UIViewController {
@@ -6,21 +5,22 @@ class TestSingleArticelViewController: UIViewController {
   //MARK: - Internal Properties
   var selectedArticle: Articles!
   var currentLanguageTest: LanguageSelector!
-
-
+  var currentImage: UIImage!
+  
+  
   //MARK: - UIObjects
   @IBOutlet weak var singleArticleTableView: UITableView!
   override func viewDidLoad() {
-        super.viewDidLoad()
-      setupDelegation()
+    super.viewDidLoad()
+    setupDelegation()
   }
   
   //MARK: - Private Methods
-     func setupDelegation() {
-       singleArticleTableView.delegate = self
-       singleArticleTableView.dataSource = self
-     }
-    
+  func setupDelegation() {
+    singleArticleTableView.delegate = self
+    singleArticleTableView.dataSource = self
+  }
+  
 }
 
 extension TestSingleArticelViewController: UITableViewDelegate, UITableViewDataSource {
@@ -30,7 +30,9 @@ extension TestSingleArticelViewController: UITableViewDelegate, UITableViewDataS
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "SingleArticle", for: indexPath) as? SingleArticleCell else { return UITableViewCell() }
-    cell.configureCell(NYTimesArticle: selectedArticle, currentLanguage: currentLanguageTest)
+    if let unwrapedImage = currentImage {
+      cell.configureCell(selectedArticle, currentLanguageTest, unwrapedImage)
+    }
     return cell
   }
   

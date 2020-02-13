@@ -34,37 +34,37 @@ struct Articles: Codable {
     }
   }
   
-  static func getTextForLanguage(_ text: String,
-                                 selectedLanguage: LanguageSelector) -> String {
+  static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
     switch selectedLanguage {
     case .English: return text
     case .Martian:
       
-    var wordSeparator = text.components(separatedBy: .whitespaces)
-      
-    var tempArray = [String]()
-    for index in 0..<wordSeparator.count  {
-      
-      var paragraphSeparator = wordSeparator[index].components(separatedBy: "\n")
+      let paragrapheSparator = text.components(separatedBy: "\n")
+      var cleanArray = [String]()
+      for paragraph in paragrapheSparator {
         
-        if wordSeparator[index].count > 3 {
-                  if wordSeparator[index].first!.isUppercase {
-                  wordSeparator[index] = MartianWords.UpperCase.rawValue
-                    tempArray.append(wordSeparator[index])
-                } else {
-                  wordSeparator[index] = MartianWords.LowerCase.rawValue
-                    tempArray.append(wordSeparator[index])
-                }
+        var word = paragraph.components(separatedBy: " ")
         
-      } else {
-        tempArray.append(wordSeparator[index])
+        for index in 0..<word.count {
+          if word[index].count > 3 {
+            if word[index].first!.isUppercase {
+              word[index] = MartianWords.UpperCase.rawValue
+              
+            } else {
+              word[index] = MartianWords.LowerCase.rawValue
+              
+            }
+            
+          }
+          
+        }
+        
+        let wordArray =  word.joined(separator: " ")
+        cleanArray.append(wordArray)
       }
-        
-        
-      
-      }
-      return tempArray.joined(separator: " ")
+      return cleanArray.joined(separator: "\n")
     }
+    
   }
 }
 
