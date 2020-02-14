@@ -18,7 +18,7 @@ class ArticleCell: UITableViewCell {
   
     let oneParagraph = NYTimesArticle.body.components(separatedBy: "\n")
     let paragraphBody = Article.getTextForLanguage(oneParagraph[0], selectedLanguage: language)
-//    UIUtilities.setupBodyText(paragraph, "• \(paragraphBody)")
+
     UIUtilities.setupArticleSumary(paragraph, "• \(paragraphBody)")
   }
   

@@ -6,7 +6,6 @@ class ArticlesListViewController: UIViewController {
   var articles = [Article]() {
     didSet {
       self.articlesTableView.reloadData()
-      
     }
   }
   
@@ -20,10 +19,8 @@ class ArticlesListViewController: UIViewController {
   //MARK: - UIObjects
   @IBOutlet weak var articlesTableView: UITableView!
   @IBOutlet weak var toggleButton: UIBarButtonItem!
-  
-  //MARK: - Private Properties
-  var isMartian = false
   let userDefaults = UserDefaults.standard
+ 
   
   
   //MARK: - Life Cycle Methods
@@ -31,27 +28,13 @@ class ArticlesListViewController: UIViewController {
     super.viewDidLoad()
     setupDelegation()
     loadArticles()
-//    self.articlesTableView.estimatedRowHeight = 500
-//    self.articlesTableView.rowHeight = UITableView.automaticDimension
-  }
-  
-  override func viewWillAppear(_ animated: Bool) {
-    self.articlesTableView.reloadData()
+    checkForLanguage()
   }
   
   //MARK: - IBActions
   @IBAction func toggleButton(_ sender: Any) {
-    switch currentLanguage {
-    case .english:
-      self.currentLanguage = currentLanguage.swapLanguages()
-      self.toggleButton.title = "English"
-
-    case .martian:
-      self.currentLanguage = currentLanguage.swapLanguages()
-      self.toggleButton.title = "Martian"
-
-    }
-    
+   languageGetter()
+    saveLanguge()
   }
   
   
@@ -81,20 +64,38 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
+  private func languageGetter() {
+    switch currentLanguage {
+       case .english:
+         self.toggleButton.title = "English"
+         self.currentLanguage = currentLanguage.swapLanguages()
+
+       case .martian:
+         self.toggleButton.title = "Martian"
+         self.currentLanguage = currentLanguage.swapLanguages()
+       }
+  }
+  
   private func setupDelegation() {
     self.articlesTableView.delegate = self
     self.articlesTableView.dataSource = self
   }
   
-  private func persistLanguage() {
-    UserDefaults.standard.set(currentLanguage, forKey: "lastSelectedLanguage")
-
-}
+  private func saveLanguge() {
+    let notation: LanguageSelector = .martian
+    userDefaults.set(notation.rawValue, forKey: Keys.languagePreference)
+  }
+  
+  private func checkForLanguage() {
+     let rawNotation = userDefaults.string(forKey: Keys.languagePreference)
+  //  let notation = LanguageSelector(rawValue: rawNotation!)
+  }
   
   private func readData() {
     if let loadedInfo: LanguageSelector = UserDefaults.standard.value(forKey: "lastSelectedLanguage") as? LanguageSelector {
       currentLanguage = loadedInfo
       self.articlesTableView.reloadData()
+      
     }
   }
 

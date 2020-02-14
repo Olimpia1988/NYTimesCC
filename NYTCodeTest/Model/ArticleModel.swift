@@ -6,13 +6,19 @@ public enum MartianWord: String {
 }
 
 public enum LanguageSelector: String {
+ 
   case english = "English"
   case martian = "Martian"
+
   
   func swapLanguages() -> LanguageSelector {
-    switch(self) {
-    case .english: return .martian
-    case .martian: return .english
+switch(self) {
+    case .english:
+return .martian
+    case .martian:
+      return .english
+
+    
     }
   }
 }
@@ -35,9 +41,13 @@ struct Article: Codable {
   }
   
   static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
+   
     switch selectedLanguage {
-    case .english: return text
+    case .english:
+  
+      return text
     case .martian:
+   
       
       let paragrapheSparator = text.components(separatedBy: "\n")
       var cleanArray = [String]()
