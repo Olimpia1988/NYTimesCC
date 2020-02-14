@@ -5,18 +5,24 @@ class ArticleCell: UITableViewCell {
   //MARK: - UIObjects
   @IBOutlet weak var title: UILabel!
   @IBOutlet weak var articleImage: UIImageView!
+  @IBOutlet weak var paragraph: UITextView!
   
   
   // MARK: - Internal Properties
-  public func configureCell(NYTimesArticle: Articles,
-                            language: LanguageSelector) {
-    let titleText = Articles.getTextForLanguage(NYTimesArticle.title,
+  public func configureCell(_ NYTimesArticle: Article,
+                            _ language: LanguageSelector) {
+    let titleText = Article.getTextForLanguage(NYTimesArticle.title,
                                                 selectedLanguage: language)
     UIUtilities.setupTitleText(title, titleText)
-    imageSetUp(NYTimesArticle: NYTimesArticle)
+    imageSetUp(NYTimesArticle)
+  
+    let oneParagraph = NYTimesArticle.body.components(separatedBy: "\n")
+    let paragraphBody = Article.getTextForLanguage(oneParagraph[0], selectedLanguage: language)
+//    UIUtilities.setupBodyText(paragraph, "• \(paragraphBody)")
+    UIUtilities.setupArticleSumary(paragraph, "• \(paragraphBody)")
   }
   
-  func imageSetUp(NYTimesArticle: Articles) {
+  func imageSetUp( _ NYTimesArticle: Article) {
     if let unwrapImage = NYTimesArticle.images {
       let filteredImage = unwrapImage.filter{$0.topImage}
       ImageGetterManager.getImage(urlStr: filteredImage.first!.url) { (result) in

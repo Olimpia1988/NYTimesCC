@@ -1,31 +1,31 @@
 import Foundation
 
-public enum MartianWords: String {
-  case UpperCase = "Boinga"
-  case LowerCase = "boinga"
+public enum MartianWord: String {
+  case upperCase = "Boinga"
+  case lowerCase = "boinga"
 }
 
 public enum LanguageSelector: String {
-  case English = "English"
-  case Martian = "Martian"
+  case english = "English"
+  case martian = "Martian"
   
   func swapLanguages() -> LanguageSelector {
     switch(self) {
-    case .English: return .Martian
-    case .Martian: return .English
+    case .english: return .martian
+    case .martian: return .english
     }
   }
 }
 
-struct Articles: Codable {
+struct Article: Codable {
   var title: String
   var images: [ArticleImages]?
   var body: String
   
   
-  static func getArticles(from jsonData: Data) -> [Articles] {
+  static func getArticles(from jsonData: Data) -> [Article] {
     do {
-      let articles = try JSONDecoder().decode([Articles].self, from: jsonData)
+      let articles = try JSONDecoder().decode([Article].self, from: jsonData)
       return articles
     } catch {
       dump(error)
@@ -36,8 +36,8 @@ struct Articles: Codable {
   
   static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
     switch selectedLanguage {
-    case .English: return text
-    case .Martian:
+    case .english: return text
+    case .martian:
       
       let paragrapheSparator = text.components(separatedBy: "\n")
       var cleanArray = [String]()
@@ -48,10 +48,10 @@ struct Articles: Codable {
         for index in 0..<word.count {
           if word[index].count > 3 {
             if word[index].first!.isUppercase {
-              word[index] = MartianWords.UpperCase.rawValue
+              word[index] = MartianWord.upperCase.rawValue
               
             } else {
-              word[index] = MartianWords.LowerCase.rawValue
+              word[index] = MartianWord.lowerCase.rawValue
               
             }
             

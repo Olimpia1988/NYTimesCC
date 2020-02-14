@@ -3,7 +3,7 @@ import UIKit
 class TestSingleArticelViewController: UIViewController {
   
   //MARK: - Internal Properties
-  var selectedArticle: Articles!
+  var selectedArticle: Article!
   var currentLanguageTest: LanguageSelector!
   var currentImage: UIImage!
   
@@ -37,7 +37,7 @@ extension TestSingleArticelViewController: UITableViewDelegate, UITableViewDataS
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 700
+    return 750
   }
   
   

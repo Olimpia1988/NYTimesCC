@@ -126,6 +126,8 @@
 		1205D48023E8A8F0008A0532 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				12EBE3AC23EB3EE10042B76D /* MartialModel.swift */,
+				125E122323F3C41A00CC8486 /* TestSingleArticelViewController.swift */,
 				1205D45E23E76778008A0532 /* AppDelegate.swift */,
 				1205D46023E76778008A0532 /* SceneDelegate.swift */,
 				1205D46923E7677A008A0532 /* LaunchScreen.storyboard */,
@@ -139,7 +141,6 @@
 			children = (
 				1205D48F23E8D059008A0532 /* ArticlesListViewController.swift */,
 				1205D49523E9E5A3008A0532 /* SingleArticleViewController.swift */,
-				125E122323F3C41A00CC8486 /* TestSingleArticelViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -158,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				1205D48323E8A913008A0532 /* ArticleModel.swift */,
-				12EBE3AC23EB3EE10042B76D /* MartialModel.swift */,
 				1205D49723E9E7B0008A0532 /* UIUtilities.swift */,
 			);
 			path = Model;

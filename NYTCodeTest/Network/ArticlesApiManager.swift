@@ -6,7 +6,7 @@ final class ArticlesAPIManager {
   static let manager = ArticlesAPIManager()
   
   // MARK: - Internal Properties
-  static func getData(completionHandler: @escaping(Result<[Articles], AppError>) -> ()) {
+  static func getData(completionHandler: @escaping(Result<[Article], AppError>) -> ()) {
     
     let stringUrl = "https://s1.nyt.com/ios-newsreader/candidates/test/articles.json"
     
@@ -21,7 +21,7 @@ final class ArticlesAPIManager {
       case .failure(let error):
         completionHandler(.failure(error))
       case .success(let data):
-        let articles = Articles.getArticles(from: data)
+        let articles = Article.getArticles(from: data)
         completionHandler(.success(articles))
       }
     }
