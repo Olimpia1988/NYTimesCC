@@ -29,9 +29,15 @@ class ArticlesListViewController: UIViewController {
     super.viewDidLoad()
     setupDelegation()
     checkForLanguage()
-    loadArticles()    
-  }
+    loadArticles()
+    
+ 
+    
+    
+    }
   
+  
+
   //MARK: - IBActions
   @IBAction func toggleButton(_ sender: Any) {
     languageGetter()
@@ -86,7 +92,6 @@ class ArticlesListViewController: UIViewController {
   private func checkForLanguage() {
     if let selectedLanguage = Keys.languagePersistenceGet() {
       self.currentLanguage = selectedLanguage
-      print(selectedLanguage)
     }
   }
 }
@@ -100,18 +105,22 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleCell else { return UITableViewCell() }
     let singleArticle = articles[indexPath.row]
-    cell.configureCell(singleArticle, currentLanguage)
+
+    cell.configureCell(singleArticle, currentLanguage){  }
     return cell
   }
   
   func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    500
+    UITableView.automaticDimension
   }
   
   private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
   
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
   
+     
+  }
 }
 

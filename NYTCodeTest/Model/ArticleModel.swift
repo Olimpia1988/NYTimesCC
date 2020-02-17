@@ -43,50 +43,53 @@ struct Article: Codable {
   }
   
   static func getTextForLanguage(_ text: String, selectedLanguage: LanguageSelector) -> String {
-   
     switch selectedLanguage {
-    case .english:
-      return text
+    case .english: return text
     case .martian:
-   
-      
       let paragrapheSparator = text.components(separatedBy: "\n")
+      
       var cleanArray = [String]()
+      
       for paragraph in paragrapheSparator {
-        
         var word = paragraph.components(separatedBy: " ")
         
-        
         for index in 0..<word.count {
-          var currentWord = word[index]
           
-          var currentWordArr = Array(currentWord)
+          let currentWord = word[index]
           
-
+          let endIndex = currentWord.endIndex
+          guard let lastChar = currentWord.last else { break }
           
-      
+          if lastChar.isPunctuation {
+            let endOfDomain = currentWord.index(endIndex, offsetBy: -1)
             
-          
-          
-          
-          print(currentWordArr)
-          if currentWordArr.count > 3  {
+            let rangeOfDomain = currentWord.startIndex ..< endOfDomain
+            let cleanWord = String(currentWord[rangeOfDomain])
             
-            if word[index].first!.isUppercase  {
-              word[index] = MartianWord.upperCase.rawValue
-              
-            } else {
-              word[index] = MartianWord.lowerCase.rawValue
-              
+            if cleanWord.count > 3 {
+              if cleanWord.first!.isUppercase {
+                word[index] = MartianWord.upperCase.rawValue + String(lastChar)
+              } else {
+                word[index] = MartianWord.lowerCase.rawValue + String(lastChar)
+              }
             }
             
+          } else if currentWord.count > 3  {
+            if currentWord.first!.isUppercase {
+              word[index] = MartianWord.upperCase.rawValue
+            } else {
+              word[index] = MartianWord.lowerCase.rawValue
+            }
           }
+          
         }
-        
         let wordArray =  word.joined(separator: " ")
+        
         cleanArray.append(wordArray)
       }
+      
       return cleanArray.joined(separator: "\n")
+      
     }
     
   }
