@@ -26,14 +26,16 @@ class ArticleCell: UITableViewCell {
     if let unwrapImage = NYTimesArticle.images {
       let filteredImage = unwrapImage.filter{$0.topImage}
       ImageGetterManager.getImage(urlStr: filteredImage.first!.url) { (result) in
+       
         switch result {
         case .failure:
           print("\(AppError.notAnImage)")
         case .success(let imageData):
           self.articleImage.image = imageData
-          
+         
+          }
         }
-      }
+      
     }
   }
 }

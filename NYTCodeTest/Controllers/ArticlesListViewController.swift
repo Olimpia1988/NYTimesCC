@@ -9,9 +9,10 @@ class ArticlesListViewController: UIViewController {
     }
   }
   
-  public var currentLanguage = LanguageSelector.english {
+  public var currentLanguage: LanguageSelector = Keys.languagePersistenceGet() ?? .english  {
     didSet {
       self.articlesTableView.reloadData()
+      
     }
   }
   
@@ -20,21 +21,20 @@ class ArticlesListViewController: UIViewController {
   @IBOutlet weak var articlesTableView: UITableView!
   @IBOutlet weak var toggleButton: UIBarButtonItem!
   let userDefaults = UserDefaults.standard
- 
+  
   
   
   //MARK: - Life Cycle Methods
   override func viewDidLoad() {
     super.viewDidLoad()
     setupDelegation()
-    loadArticles()
     checkForLanguage()
+    loadArticles()    
   }
   
   //MARK: - IBActions
   @IBAction func toggleButton(_ sender: Any) {
-   languageGetter()
-    saveLanguge()
+    languageGetter()
   }
   
   
@@ -51,7 +51,7 @@ class ArticlesListViewController: UIViewController {
     detailViewController.currentLanguage = currentLanguage
   }
   
- 
+  
   //MARK: - Private functions
   private func loadArticles() {
     ArticlesAPIManager.getData { (result) in
@@ -66,14 +66,16 @@ class ArticlesListViewController: UIViewController {
   
   private func languageGetter() {
     switch currentLanguage {
-       case .english:
-         self.toggleButton.title = "English"
-         self.currentLanguage = currentLanguage.swapLanguages()
-
-       case .martian:
-         self.toggleButton.title = "Martian"
-         self.currentLanguage = currentLanguage.swapLanguages()
-       }
+    case .english:
+      self.toggleButton.title = "English"
+      self.currentLanguage = currentLanguage.swapLanguages()
+      Keys.languagePersistenceSave(currentLanguge: currentLanguage)
+      
+    case .martian:
+      self.toggleButton.title = "Martian"
+      self.currentLanguage = currentLanguage.swapLanguages()
+      Keys.languagePersistenceSave(currentLanguge: currentLanguage)
+    }
   }
   
   private func setupDelegation() {
@@ -81,24 +83,12 @@ class ArticlesListViewController: UIViewController {
     self.articlesTableView.dataSource = self
   }
   
-  private func saveLanguge() {
-    let notation: LanguageSelector = .martian
-    userDefaults.set(notation.rawValue, forKey: Keys.languagePreference)
-  }
-  
   private func checkForLanguage() {
-     let rawNotation = userDefaults.string(forKey: Keys.languagePreference)
-  //  let notation = LanguageSelector(rawValue: rawNotation!)
-  }
-  
-  private func readData() {
-    if let loadedInfo: LanguageSelector = UserDefaults.standard.value(forKey: "lastSelectedLanguage") as? LanguageSelector {
-      currentLanguage = loadedInfo
-      self.articlesTableView.reloadData()
-      
+    if let selectedLanguage = Keys.languagePersistenceGet() {
+      self.currentLanguage = selectedLanguage
+      print(selectedLanguage)
     }
   }
-
 }
 
 //MARK: - ViewController Extention
@@ -119,9 +109,9 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   }
   
   private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-      return UITableView.automaticDimension
+    return UITableView.automaticDimension
   }
   
-
+  
 }
 

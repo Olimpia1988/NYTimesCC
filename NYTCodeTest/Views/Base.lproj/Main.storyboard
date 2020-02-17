@@ -83,7 +83,7 @@
                         <viewLayoutGuide key="safeArea" id="Nmu-rR-1YC"/>
                     </view>
                     <navigationItem key="navigationItem" id="Urt-YA-Zkv">
-                        <barButtonItem key="rightBarButtonItem" title="Martian" style="done" id="rb4-uC-IFX">
+                        <barButtonItem key="rightBarButtonItem" title="Change Language" style="done" id="rb4-uC-IFX">
                             <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <connections>
                                 <action selector="toggleButton:" destination="pSB-s3-iAv" id="S75-d1-I6P"/>

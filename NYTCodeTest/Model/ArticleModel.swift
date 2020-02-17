@@ -21,6 +21,7 @@ return .martian
     
     }
   }
+  
 }
 
 struct Article: Codable {
@@ -28,6 +29,7 @@ struct Article: Codable {
   var images: [ArticleImages]?
   var body: String
   
+ 
   
   static func getArticles(from jsonData: Data) -> [Article] {
     do {
@@ -44,7 +46,6 @@ struct Article: Codable {
    
     switch selectedLanguage {
     case .english:
-  
       return text
     case .martian:
    
@@ -57,8 +58,19 @@ struct Article: Codable {
         
         
         for index in 0..<word.count {
+          var currentWord = word[index]
           
-          if word[index].count > 3  {
+          var currentWordArr = Array(currentWord)
+          
+
+          
+      
+            
+          
+          
+          
+          print(currentWordArr)
+          if currentWordArr.count > 3  {
             
             if word[index].first!.isUppercase  {
               word[index] = MartianWord.upperCase.rawValue

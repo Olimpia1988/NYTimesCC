@@ -11,8 +11,6 @@ class SingleArticleViewController: UIViewController {
   @IBOutlet weak var articleTitle: UILabel!
   @IBOutlet weak var articleImage: UIImageView!
   @IBOutlet weak var articleBody: UITextView!
- // @IBOutlet weak var textViewHC: NSLayoutConstraint!
-  
   
   
   //MARK: - Life Cycle Methods
@@ -23,7 +21,6 @@ class SingleArticleViewController: UIViewController {
   
   //MARK: - Private Properties
   private func setupUIObjects() {
-// textViewHC.constant = self.articleBody.contentSize.height
     switch currentLanguage {
     case .english:
       UIUtilities.setupTitleText(articleTitle, selecteddArticle.title)
