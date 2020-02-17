@@ -55,9 +55,12 @@ struct Article: Codable {
         
         var word = paragraph.components(separatedBy: " ")
         
+        
         for index in 0..<word.count {
-          if word[index].count > 3 {
-            if word[index].first!.isUppercase {
+          
+          if word[index].count > 3  {
+            
+            if word[index].first!.isUppercase  {
               word[index] = MartianWord.upperCase.rawValue
               
             } else {
@@ -66,7 +69,6 @@ struct Article: Codable {
             }
             
           }
-          
         }
         
         let wordArray =  word.joined(separator: " ")
