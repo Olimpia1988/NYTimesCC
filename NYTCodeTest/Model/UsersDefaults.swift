@@ -1,33 +1,23 @@
 import Foundation
 
-struct Keys {
+class Keys {
    static let languagePreference = "perferedLanguge"
-  
-  static func languagePreference(currentLanguge: LanguageSelector){
-    
-    let userDefaults = UserDefaults.standard
-    
-    userDefaults.set(LanguageSelector.RawValue.self, forKey: languagePreference)
-    
-    
-    
-//    var userPreference = Bool()
-//
-//    if currentLanguge == .english {
-//       userPreference = true
-//    } else {
-//      userPreference = false
-//
-//      if currentLanguge == .martian {
-//      userPreference = true
-//    } else {
-//      userPreference = false
-//    }
-//
-//  }
-//    print(userPreference)
-//    print(currentLanguge)
-//    return userPreference
+   static let userDefaults = UserDefaults.standard
+ 
+  static func languagePersistenceSave(currentLanguge: LanguageSelector) {
+    userDefaults.set(currentLanguge.rawValue, forKey: languagePreference)
  }
+
+  
+  static func languagePersistenceGet() -> LanguageSelector? {
+    if let selectedLanguage = userDefaults.object(forKey: languagePreference) as? String {
+
+      return LanguageSelector(rawValue: selectedLanguage)
+      
+    }
+    return nil
+  }
+  
+  
 
 }
