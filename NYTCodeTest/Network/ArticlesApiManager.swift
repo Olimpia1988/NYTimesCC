@@ -17,7 +17,6 @@ final class ArticlesAPIManager {
     
     NetworkManager.manager.performDataTask(withUrl: url, andMethod: .get) { (result) in
       switch result {
-        
       case .failure(let error):
         completionHandler(.failure(error))
       case .success(let data):

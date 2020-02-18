@@ -6,19 +6,15 @@ public enum MartianWord: String {
 }
 
 public enum LanguageSelector: String {
- 
   case english = "English"
   case martian = "Martian"
-
   
   func swapLanguages() -> LanguageSelector {
-switch(self) {
+    switch(self) {
     case .english:
-return .martian
+      return .martian
     case .martian:
       return .english
-
-    
     }
   }
 }
@@ -28,7 +24,6 @@ struct Article: Codable {
   var images: [ArticleImages]?
   var body: String
   
-  
   static func getArticles(from jsonData: Data) -> [Article] {
     do {
       let articles = try JSONDecoder().decode([Article].self, from: jsonData)
@@ -36,7 +31,6 @@ struct Article: Codable {
     } catch {
       dump(error)
       return []
-      
     }
   }
   
@@ -45,8 +39,7 @@ struct Article: Codable {
     case .english: return text
     case .martian:
       let paragrapheSparator = text.components(separatedBy: "\n")
-      
-      var cleanArray = [String]()
+      var martianWords = [String]()
       
       for paragraph in paragrapheSparator {
         var word = paragraph.components(separatedBy: " ")
@@ -54,15 +47,13 @@ struct Article: Codable {
         for index in 0..<word.count {
           
           let currentWord = word[index]
-          
           let endIndex = currentWord.endIndex
           guard let lastChar = currentWord.last else { break }
           
           if lastChar.isPunctuation {
-            let endOfDomain = currentWord.index(endIndex, offsetBy: -1)
-            
-            let rangeOfDomain = currentWord.startIndex ..< endOfDomain
-            let cleanWord = String(currentWord[rangeOfDomain])
+            let endOfRange = currentWord.index(endIndex, offsetBy: -1)
+            let rangeOfWords = currentWord.startIndex ..< endOfRange
+            let cleanWord = String(currentWord[rangeOfWords])
             
             if cleanWord.count > 3 {
               if cleanWord.first!.isUppercase {
@@ -79,17 +70,11 @@ struct Article: Codable {
               word[index] = MartianWord.lowerCase.rawValue
             }
           }
-          
         }
-        let wordArray =  word.joined(separator: " ")
-        
-        cleanArray.append(wordArray)
+        martianWords.append(word.joined(separator: " "))
       }
-      
-      return cleanArray.joined(separator: "\n")
-      
+      return martianWords.joined(separator: "\n")
     }
-    
   }
 }
 

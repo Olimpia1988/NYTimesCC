@@ -5,7 +5,7 @@ enum HTTPMethod: String {
   case post = "POST"
 }
 
-class NetworkManager {
+final class NetworkManager {
   
   // MARK: - Static Properties
   static let manager = NetworkManager()
@@ -22,7 +22,6 @@ class NetworkManager {
           completionHandler(.failure(.noDataReceived))
           return
         }
-        
         guard let response = response as? HTTPURLResponse, (200...299) ~= response.statusCode else {
           completionHandler(.failure(.badStatusCode))
           return

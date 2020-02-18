@@ -1,6 +1,6 @@
 import UIKit
 
-class ImageGetterManager {
+final class ImageGetterManager {
     
     // MARK: - Static Properties
     static let manager = ImageGetterManager()
