@@ -6,7 +6,7 @@ protocol ArticleCellDelegate: class {
 
 class ArticleCell: UITableViewCell {
   
-  var delegate: ArticleCellDelegate?
+ weak var delegate: ArticleCellDelegate?
   
   //MARK: - UIObjects
   @IBOutlet weak var title: UILabel!

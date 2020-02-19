@@ -53,10 +53,10 @@ class ArticlesListViewController: UIViewController {
   
   //MARK: - Private functions
   private func loadArticles() {
- ArticlesAPIManager.getData { (result) in
+ ArticlesAPIManager.getData {[ weak self ] (result) in
       switch result {
       case .success(let data):
-        self.articles = data
+        self?.articles = data
       case .failure(let error):
         print("Error loading data: \(error)")
       }
