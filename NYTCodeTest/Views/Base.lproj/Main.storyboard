@@ -26,17 +26,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvS-WC-eEe">
-                                                    <rect key="frame" x="40" y="21" width="334" height="70"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HvS-WC-eEe">
+                                                    <rect key="frame" x="40" y="21" width="334" height="90"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="70" id="8TM-ln-f1N"/>
+                                                        <constraint firstAttribute="height" constant="90" id="8TM-ln-f1N"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lkf-i1-F2L">
-                                                    <rect key="frame" x="40" y="101" width="334" height="150"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lkf-i1-F2L">
+                                                    <rect key="frame" x="40" y="121" width="334" height="150"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="150" id="QIm-1z-bBo"/>
@@ -47,7 +47,7 @@
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1tG-9o-ITm">
-                                                    <rect key="frame" x="40" y="261" width="334" height="191"/>
+                                                    <rect key="frame" x="40" y="281" width="334" height="171"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>

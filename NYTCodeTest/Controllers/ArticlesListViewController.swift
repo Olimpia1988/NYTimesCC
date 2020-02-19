@@ -5,7 +5,9 @@ class ArticlesListViewController: UIViewController {
   //MARK: - Setters
   var articles = [Article]() {
     didSet {
-      self.articlesTableView.reloadData()
+      DispatchQueue.main.async {
+        self.articlesTableView.reloadData()
+      }
     }
   }
   
@@ -26,7 +28,6 @@ class ArticlesListViewController: UIViewController {
     setupDelegation()
     checkForLanguage()
     loadArticles()
- 
     }
   
 
@@ -52,7 +53,7 @@ class ArticlesListViewController: UIViewController {
   
   //MARK: - Private functions
   private func loadArticles() {
-    ArticlesAPIManager.getData { (result) in
+ ArticlesAPIManager.getData { (result) in
       switch result {
       case .success(let data):
         self.articles = data
@@ -98,7 +99,7 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell", for: indexPath) as? ArticleCell else { return UITableViewCell() }
     let singleArticle = articles[indexPath.row]
     cell.delegate = self
-    cell.configureCell(singleArticle, currentLanguage) { }
+    cell.configureCell(singleArticle, currentLanguage, indexPath) {  }
     return cell
   }
   
@@ -109,11 +110,12 @@ extension ArticlesListViewController: UITableViewDelegate, UITableViewDataSource
   private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
     return UITableView.automaticDimension
   }
-  
 }
 
 extension ArticlesListViewController: ArticleCellDelegate {
-    func imageDataLoaded() {
-        articlesTableView.reloadData()
-    }
+  func imageDataLoaded(with index: IndexPath) {
+    articlesTableView.reloadData()
+  }
+  
+ 
 }

@@ -2,8 +2,11 @@ import UIKit
 
 final class ImageGetterManager {
     
+  // MARK: - Private Properties and Initializers
+    private init() {}
+  
     // MARK: - Static Properties
-    static let manager = ImageGetterManager()
+    static let cache = NSCache<NSString, UIImage>()
   
   // MARK: - Internal Properties
   static func getImage(urlStr: String, completionHandler: @escaping (Result<UIImage, AppError>) -> Void) {
@@ -18,14 +21,23 @@ final class ImageGetterManager {
           completionHandler(.failure(error))
           
         case .success(let imageData):
-          guard let image = UIImage(data: imageData) else { return }
-          completionHandler(.success(image))
+          DispatchQueue.main.async {
+            if let image = UIImage(data: imageData) {
+              cache.setObject(image, forKey: url.absoluteString as NSString)
+              completionHandler(.success(image))
+            }
+          }
         }
       }
-      
     }
-  // MARK: - Private Properties and Initializers
-   private init() {}
+ 
+  static func getImageFromCache(with url: String) -> UIImage? {
+    if let image = cache.object(forKey: url as NSString) {
+    
+      return image
+    } else {
+      return nil
+    }
 }
 
-
+}
